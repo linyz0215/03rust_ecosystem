@@ -1,8 +1,8 @@
 use error_study::MyError;
-use std::fs;
+use std::{any, fs};
 use anyhow::Context;
 use std::num::ParseIntError;
-fn main() -> Result<(), anyhow::Error> {
+fn main() -> Result<(), MyError> {
     println!("size of anyhow::Error is {}", size_of::<anyhow::Error>());
     println!("size of std::io::Error is {}", size_of::<std::io::Error>());
     println!(
@@ -16,7 +16,10 @@ fn main() -> Result<(), anyhow::Error> {
     println!("size of string is {}", size_of::<String>());
     println!("size of MyError is {}", size_of::<MyError>());
     let filename = "NonExistentFile.txt";
-    let _fd = fs::File::open(filename).with_context(|| format!("Can0 not find file: {}",filename))?;
+    match fs::File::open(filename).map_err(MyError::from) {
+        Ok(content) => println!("File content: {:?}", content),
+        Err(e) => println!("{}",  e),
+    }
     fail_with_error()?;
     Ok(())
 }
