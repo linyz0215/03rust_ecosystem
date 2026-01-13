@@ -8,6 +8,7 @@ struct User {
     skills: Vec<String>,
 }
 
+
 fn main() -> Result<()> {
     let user = User {
         name: "Alice".to_string(),
