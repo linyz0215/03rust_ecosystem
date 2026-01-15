@@ -9,3 +9,17 @@ Content-Type: application/json
 {
     "age": 6
 }
+
+### shorten handler
+### url shortener
+
+POST http://localhost:9876/
+Content-Type: application/json
+
+{
+"url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422"
+}
+
+### get original url    
+GET http://localhost:9876/x--zeR
+

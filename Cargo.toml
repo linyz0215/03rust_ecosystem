@@ -34,5 +34,6 @@ http = "1.4.0"
 dashmap = "6.1.0"
 tokio-stream = "0.1.18"
 tokio-util = { version = "0.7.18", features = ["codec"] }
+nanoid = "0.4.0"
 
 
